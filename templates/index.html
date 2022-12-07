@@ -1,0 +1,257 @@
+
+
+        {% extends 'base.html'%}
+        {% load static%}
+        {% block content %}
+
+        <main>
+
+            <section class="hero">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-5 col-12 m-auto">
+                            <div class="heroText">
+
+                                <h1 class="text-white mb-lg-5 mb-3">Delicious Steaks</h1>
+
+                                <div class="c-reviews my-3 d-flex flex-wrap align-items-center">
+                                    <div class="d-flex flex-wrap align-items-center">
+                                        <h4 class="text-white mb-0 me-3">4.4/5</h4>
+
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-white w-100">From <strong>1,206+</strong> Customer Reviews</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-12">
+                            <div id="carouselExampleCaptions" class="carousel carousel-fade hero-carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="carousel-image-wrap">
+                                            <img src="{% static 'images/slide/jay-wennington-N_Y88TWmGwA-unsplash.jpg' %}" class="img-fluid carousel-image" alt="">
+                                        </div>
+
+                                        <div class="carousel-caption">
+                                            <span class="text-white">
+                                                <i class="bi-geo-alt me-2"></i>
+                                                Manhattan, New York
+                                            </span>
+
+                                            <h4 class="hero-text">Fine Dining Restaurant</h4>
+                                        </div>
+                                    </div>
+                                       {% for i in goods %}
+
+                                    <div class="carousel-item">
+                                        <div class="carousel-image-wrap">
+                                            <img src="{% static 'images/slide/jason-leung-O67LZfeyYBk-unsplash.jpg' %}" class="img-fluid carousel-image" alt="">
+                                        </div>
+                                    </div>
+
+                                        <div class="carousel-caption">
+                                            <div class="d-flex align-items-center">
+                                                <h4 class="hero-text">{{i.name}}</h4>
+
+                                                <span class="price-tag ms-4"><small></small>{{i.price}}</span>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap align-items-center">
+                                                <h5 class="reviews-text mb-0 me-3">{{i.rating}}/5</h5>
+
+                                                <div class="reviews-stars">
+                                                    <i class="bi-star-fill reviews-icon"></i>
+                                                    <i class="bi-star-fill reviews-icon"></i>
+                                                    <i class="bi-star-fill reviews-icon"></i>
+                                                    <i class="bi-star-fill reviews-icon"></i>
+                                                    <i class="bi-star-fill reviews-icon"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     {% endfor %}
+
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="{% static 'video/production_ID_3769033.mp4' %}" type="video/mp4">
+                        	Your browser does not support the video tag.
+                    	</video>
+                </div>
+
+                <div class="overlay"></div>
+            </section>
+
+            <section class="menu section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="text-center mb-lg-5 mb-4">Special Menus</h2>
+                        </div>
+
+
+                        {% for i in foods%}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="menu-thumb">
+                                <a href="{% url 'food_detail' i.id %}">
+                                <div class="menu-image-wrap" >
+
+                                    <img src="{{i.img.url}}" class="img-fluid menu-image" alt="">
+
+                                    <span class="menu-tag bg-warning">{{i.special}}</span>
+                                </div>
+                                    </a>
+
+                                <div class="menu-info d-flex flex-wrap align-items-center">
+                                    <h4 class="mb-0">{{i.name}}</h4>
+                                    {% if i.discount_price %}
+                                    <span class="price-tag bg-white shadow-lg ms-4">{{i.discount_price}}</span>
+                                    {% endif %}
+                                    <del class="ms-2">{{i.price}}</del>
+
+                                    <div class="d-flex flex-wrap align-items-center w-100 mt-2">
+                                        <h6 class="reviews-text mb-0 me-3">{{i.rating}}/5</h6>
+                                        {% if i.rating > 4 and i.rating <= 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 3 and i.rating < 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 2 and i.rating < 4 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 1 and i.rating < 3 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 0 and i.rating < 2 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+
+
+                                        <p class="reviews-text mb-0 ms-4">86 Reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="BgImage"></section>
+
+            <section class="news section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <h2 class="text-center mb-lg-5 mb-4">News &amp; Events</h2>
+                        {% for i in news %}
+                            {% if i.type == 'featured'%}
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="news-thumb mb-4">
+                                <a href="{% url 'news_detail'  i.id %}">
+                                    <img src="{{i.img.url}}" class="img-fluid news-image" alt="">
+                                </a>
+
+                                <div class="news-text-info news-text-info-large">
+                                    <span class="category-tag bg-danger">Featured</span>
+
+                                    <h5 class="news-title mt-2">
+                                        <a href="{% url 'news_detail'  i.id %}" class="news-title-link">{{i.name}}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                            {% if i.type != 'featured'%}
+
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="news-thumb mb-lg-0 mb-lg-4 mb-0">
+                                <a href="{% url 'news_detail'  i.id %}">
+                                    <img src="{{i.img.url}}" class="img-fluid news-image" alt="">
+                                </a>
+
+                                <div class="news-text-info">
+                                    <span class="category-tag me-3 bg-info">{{i.type}}</span>
+
+                                    <strong>{{i.date}}</strong>
+
+                                    <h5 class="news-title mt-2">
+                                        <a href="{% url 'news_detail'  i.id %}" class="news-title-link">{{i.name}}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        {% endblock  %}
+
+

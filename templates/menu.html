@@ -1,0 +1,389 @@
+
+
+        {% extends 'base.html'%}
+        {% load static%}
+        {% block content %}
+
+        <main>
+
+            <header class="site-header site-menu-header">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-10 col-12 mx-auto">
+                            <h1 class="text-white">Our Menus</h1>
+
+                            <strong class="text-white">Perfect for all Breakfast, Lunch and Dinner</strong>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="overlay"></div>
+            </header>
+
+            <section class="menu section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="mb-lg-5 mb-4">Foods</h2>
+                        </div>
+                        {% for i in foods%}
+                            {% if i.category == 'foods'%}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="menu-thumb">
+                                <a href="{% url 'food_detail'  i.id %}">
+
+                                <img src="{{i.img.url}}" class="img-fluid menu-image" alt="">
+                                </a>
+
+                                <div class="menu-info d-flex flex-wrap align-items-center">
+                                    <h4 class="mb-0">{{i.name}}</h4>
+
+                                    {% if discount_price%}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.discount_price}}</span>
+
+                                    {% else %}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.price}}</span>
+
+                                    {% endif %}
+
+
+                                    <div class="d-flex flex-wrap align-items-center w-100 mt-2">
+                                        <h6 class="reviews-text mb-0 me-3">{{i.rating}}/5</h6>
+                                        {% if i.rating > 4 and i.rating <= 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 3 and i.rating < 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 2 and i.rating < 4 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 1 and i.rating < 3 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 0 and i.rating < 2 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+
+
+                                        <p class="reviews-text mb-0 ms-4">86 Reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="menu section-padding bg-white">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="mb-lg-5 mb-4">Salads</h2>
+                        </div>
+                        {% for i in foods%}
+                            {% if i.category == 'salad'%}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="menu-thumb">
+                                <img src="{{i.img.url}}" class="img-fluid menu-image" alt="">
+
+                                <div class="menu-info d-flex flex-wrap align-items-center">
+                                    <h4 class="mb-0">{{i.name}}</h4>
+
+                                    {% if discount_price%}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.discount_price}}</span>
+
+                                    {% endif %}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.price}}</span>
+
+
+                                    <div class="d-flex flex-wrap align-items-center w-100 mt-2">
+                                        <h6 class="reviews-text mb-0 me-3">{{i.rating}}/5</h6>
+                                        {% if i.rating > 4 and i.rating <= 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 3 and i.rating < 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 2 and i.rating < 4 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 1 and i.rating < 3 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 0 and i.rating < 2 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+
+
+                                        <p class="reviews-text mb-0 ms-4">86 Reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="menu section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="mb-lg-5 mb-4">Drinks</h2>
+                        </div>
+                        {% for i in foods%}
+                            {% if i.category == 'drink'%}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="menu-thumb">
+                                <img src="{{i.img.url}}" class="img-fluid menu-image" alt="">
+
+                                <div class="menu-info d-flex flex-wrap align-items-center">
+                                    <h4 class="mb-0">{{i.name}}</h4>
+
+                                    {% if discount_price%}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.discount_price}}</span>
+
+                                    {% endif %}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.price}}</span>
+
+
+                                    <div class="d-flex flex-wrap align-items-center w-100 mt-2">
+                                        <h6 class="reviews-text mb-0 me-3">{{i.rating}}/5</h6>
+                                        {% if i.rating > 4 and i.rating <= 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 3 and i.rating < 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 2 and i.rating < 4 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 1 and i.rating < 3 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 0 and i.rating < 2 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+
+
+                                        <p class="reviews-text mb-0 ms-4">86 Reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+
+
+                    </div>
+                </div>
+            </section>
+
+
+                        <section class="menu section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="mb-lg-5 mb-4">Desert</h2>
+                        </div>
+                        {% for i in foods%}
+                            {% if i.category == 'desert'%}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="menu-thumb">
+                                <img src="{{i.img.url}}" class="img-fluid menu-image" alt="">
+
+                                <div class="menu-info d-flex flex-wrap align-items-center">
+                                    <h4 class="mb-0">{{i.name}}</h4>
+
+                                    {% if discount_price%}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.discount_price}}</span>
+
+                                    {% endif %}
+
+                                    <span class="price-tag bg-white shadow-lg ms-4"><small></small>{{i.price}}</span>
+
+
+                                    <div class="d-flex flex-wrap align-items-center w-100 mt-2">
+                                        <h6 class="reviews-text mb-0 me-3">{{i.rating}}/5</h6>
+                                        {% if i.rating > 4 and i.rating <= 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 3 and i.rating < 5 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 2 and i.rating < 4 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 1 and i.rating < 3 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+                                        {% if i.rating > 0 and i.rating < 2 %}
+                                        <div class="reviews-stars">
+                                            <i class="bi-star-fill reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                            <i class="bi-star reviews-icon"></i>
+                                        </div>
+                                        {% endif%}
+
+
+                                        <p class="reviews-text mb-0 ms-4">86 Reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+
+
+
+
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+        {% endblock  %}
+
+
+
+
+
