@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .form import *
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as log
 def index(request):
     context = {
@@ -75,7 +75,7 @@ def team_detail(request, pk):
     return render(request, 'team-detail.html', contex)
 
 
-def login(request):
+def login_user(request):
 
     if request.method == "POST":
         username = request.POST.get('username')
@@ -86,14 +86,14 @@ def login(request):
             log(request, user)
             return redirect('index')
         else:
-            return redirect('login')
+            return redirect('login_user')
 
     return render(request, 'login.html')
 
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('login_user')
 
 def reserve(request):
 
@@ -129,7 +129,7 @@ def register(request):
         #     form.save()
         #     return redirect('index')
         # else:
-        #     return redirect('login')
+        #     return redirect('login_user')
 
     return render(request, 'register.html', {'form':form})
 
